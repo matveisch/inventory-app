@@ -1,12 +1,14 @@
 extends layout
 
 block content
-    h1= title
+    div.header
+        h1= title
+        a.btn(href='/catalog/item/create') Create new item
 
     ul
         each item in items_list
             li
                 a(href=item.url) #{item.name}
-                |  (#{item.price})
+                |  – $#{item.price}
         else
-            li There are no books.
+            li There are no items.

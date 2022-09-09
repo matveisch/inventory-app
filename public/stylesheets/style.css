@@ -5,8 +5,25 @@ body .main-container {
   display: flex;
   gap: 100px;
 }
-body .main-container .sidebar ul {
+body ul {
   list-style-type: none;
+}
+body .btn {
+  background-color: cadetblue;
+  /* Green */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+body .header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 a {

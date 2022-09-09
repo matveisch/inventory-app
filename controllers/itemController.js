@@ -20,10 +20,28 @@ exports.index = (req, res) => {
 };
 
 exports.items_list = (req, res, next) => {
-    Item.find({}, 'name')
+    Item.find({})
         .sort({name: 1})
         .exec((err, list_items) => {
-            if (err) {return next(err)}
+            if (err) return next(err);
+
             res.render('items_list', {title: 'Items List', items_list: list_items});
         });
 };
+
+exports.item_details = (req, res, next) => {
+    Item.findById(req.params.id)
+        .populate('category')
+        .exec((err, item) => {
+            if (err) return next(err);
+
+            if (item === null) {
+                const err = new Error('Book not found');
+                err.status = 404;
+                return next(err);
+            }
+            console.log(item);
+
+            res.render('item_details', {item});
+        });
+}
