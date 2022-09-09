@@ -1,0 +1,16 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+body .main-container {
+  display: flex;
+  gap: 100px;
+}
+body .main-container .sidebar ul {
+  list-style-type: none;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*# sourceMappingURL=style.css.map */

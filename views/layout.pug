@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+      div(class='main-container')
+        div(class='sidebar')
+          block sidebar
+            ul(class='sidebar-nav')
+              li
+                a(href='/catalog') Home
+              li
+                a(href='/catalog/items') All items
+              li
+                a(href='/catalog/categories') All categories
+
+                hr
+
+              li
+                a(href='/catalog/item/create') Create new item
+              li
+                a(href='/catalog/category/create') Create new category
+
+        div(class='main')
+          block content
+
