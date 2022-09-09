@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');
@@ -11,7 +13,7 @@ const catalogRouter = require('./routes/catalog');
 var app = express();
 
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb+srv://inventoryapp:KZ5tHAZtqJf5KxBG@cluster0.wzunpom.mongodb.net/?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGODB_URL;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

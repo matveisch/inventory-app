@@ -18,3 +18,12 @@ exports.index = (req, res) => {
         }
     );
 };
+
+exports.items_list = (req, res, next) => {
+    Item.find({}, 'name')
+        .sort({name: 1})
+        .exec((err, list_items) => {
+            if (err) {return next(err)}
+            res.render('items_list', {title: 'Items List', items_list: list_items});
+        });
+};
