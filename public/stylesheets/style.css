@@ -25,6 +25,12 @@ body .header {
   align-items: center;
   gap: 20px;
 }
+body .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
 
 a {
   color: #00B7FF;

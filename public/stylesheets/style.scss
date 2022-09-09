@@ -32,6 +32,13 @@ body {
     align-items: center;
     gap: 20px;
   }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
 }
 
 a {

@@ -1,4 +1,5 @@
 const async = require('async');
+const { body, validationResult } = require("express-validator");
 
 const Item = require('../models/item');
 const Category = require('../models/category');
@@ -57,3 +58,56 @@ exports.item_create_get = (req, res, next) => {
         });
     });
 };
+
+exports.item_create_post = [
+    body("name", "Name must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("description", "Description must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("category.*", "Category must not be empty.")
+        .escape(),
+    body("price", "Price must not be empty")
+        .trim()
+        .isInt({ min: 0})
+        .escape(),
+    body("numberInStock", "Number In Stock must not be empty")
+        .trim()
+        .isInt({ min: 0})
+        .escape(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        const item = new Item({
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            numberInStock: req.body.numberInStock,
+        });
+
+        if (!errors.isEmpty()) {
+            Category.find({}).exec((err, categories) => {
+                if (err) return next(err);
+
+                res.render('item_form', {
+                    title: 'Create Item',
+                    categories,
+                    item,
+                    errors: errors.array(),
+                });
+            })
+
+            return;
+        }
+
+        item.save((err) => {
+            if (err) return next(err);
+
+            res.redirect(item.url);
+        });
+    }
+]
