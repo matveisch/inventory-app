@@ -40,8 +40,20 @@ exports.item_details = (req, res, next) => {
                 err.status = 404;
                 return next(err);
             }
-            console.log(item);
 
             res.render('item_details', {item});
         });
-}
+};
+
+exports.item_create_get = (req, res, next) => {
+    Category.find({}).exec((err, categories) => {
+        if (err) return next(err);
+
+        console.log(categories);
+
+        res.render('item_form', {
+            title: 'Create Item',
+            categories,
+        });
+    });
+};
