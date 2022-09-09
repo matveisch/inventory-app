@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 #{category.name}
+
+    p #[strong Description:] #{category.description}
+        p #[strong Items:]
+            each val, index in category_items
+                a(href=val.url)  #{val.name}
+                if index < category_items.length - 1
+                    | ,
+
+    hr
+    p
+        a(href=category.url + '/delete') Delete Category
+    p
+        a(href=category.url + '/update') Update Category
