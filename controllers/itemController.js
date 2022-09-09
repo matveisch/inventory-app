@@ -110,4 +110,25 @@ exports.item_create_post = [
             res.redirect(item.url);
         });
     }
-]
+];
+
+exports.item_delete_get = (req, res, next) => {
+    Item.findById(req.params.id).exec((err, item) => {
+        if (err) return next(err);
+
+        if (item === null) res.redirect('catalog/items');
+
+        res.render('item_delete', {
+            title: 'Delete Item',
+            item
+        })
+    })
+};
+
+exports.item_delete_post = (req, res, next) => {
+    Item.findByIdAndRemove(req.body.itemid, (err) => {
+        if (err) return next(err);
+
+        res.redirect('/catalog/items');
+    })
+}

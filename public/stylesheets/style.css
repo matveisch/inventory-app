@@ -19,6 +19,7 @@ body .btn {
   text-decoration: none;
   display: inline-block;
   font-size: 15px;
+  cursor: pointer;
 }
 body .header {
   display: flex;
