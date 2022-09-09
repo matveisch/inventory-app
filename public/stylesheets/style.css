@@ -1,14 +1,17 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-body .main-container {
+
+.main-container {
   display: flex;
   gap: 100px;
 }
-body ul {
+
+ul {
   list-style-type: none;
 }
-body .btn {
+
+.btn {
   background-color: cadetblue;
   /* Green */
   border: none;
@@ -21,12 +24,14 @@ body .btn {
   font-size: 15px;
   cursor: pointer;
 }
-body .header {
+
+.header {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-body .form-group {
+
+.form-group {
   display: flex;
   flex-direction: column;
   gap: 5px;

@@ -1,45 +1,41 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
-  .main-container {
-    display: flex;
-    gap: 100px;
+.main-container {
+  display: flex;
+  gap: 100px;
+}
 
-    .sidebar {
+// common classes
+ul {
+  list-style-type: none;
+}
 
-    }
-  }
+.btn {
+  background-color: cadetblue; /* Green */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
 
-  // common classes
-  ul {
-    list-style-type: none;
-  }
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
-  .btn {
-    background-color: cadetblue; /* Green */
-    border: none;
-    border-radius: 8px;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    cursor: pointer;
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 10px;
-  }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 a {

@@ -132,3 +132,85 @@ exports.item_delete_post = (req, res, next) => {
         res.redirect('/catalog/items');
     })
 }
+
+exports.item_update_get = (req, res, next) => {
+    async.parallel(
+        {
+            item(callback) {
+                Item.findById(req.params.id).exec(callback);
+            },
+            categories(callback) {
+                Category.find({}).exec(callback);
+            }
+        },
+        (err, results) => {
+            if (err) return next(err);
+
+            if (results.item === null) {
+                const err = new Error('Item not found');
+                err.status = 404;
+                return next(err);
+            }
+
+            res.render('item_form', {
+                title: 'Update Item',
+                item: results.item,
+                categories: results.categories,
+            });
+        }
+    )
+};
+
+exports.item_update_post = [
+    body("name", "Name must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("description", "Description must not be empty.")
+        .trim()
+        .isLength({ min: 1 })
+        .escape(),
+    body("category.*", "Category must not be empty.")
+        .escape(),
+    body("price", "Price must not be empty")
+        .trim()
+        .isInt({ min: 0})
+        .escape(),
+    body("numberInStock", "Number In Stock must not be empty")
+        .trim()
+        .isInt({ min: 0})
+        .escape(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        const item = new Item({
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            numberInStock: req.body.numberInStock,
+            _id: req.params.id,
+        });
+
+        if (!errors.isEmpty()) {
+            Category.find({}).exec((err, categories) => {
+                if (err) return next(err);
+
+                res.render('item_form', {
+                    title: 'Create Item',
+                    categories,
+                    item,
+                    errors: errors.array(),
+                });
+            })
+
+            return;
+        }
+
+        Item.findByIdAndUpdate(req.params.id, item, {}, (err, theItem) => {
+            if (err) return next(err);
+
+            res.redirect(theItem.url);
+        })
+    }
+];
