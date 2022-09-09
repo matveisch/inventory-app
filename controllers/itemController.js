@@ -197,7 +197,7 @@ exports.item_update_post = [
                 if (err) return next(err);
 
                 res.render('item_form', {
-                    title: 'Create Item',
+                    title: 'Update Item',
                     categories,
                     item,
                     errors: errors.array(),
