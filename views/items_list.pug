@@ -5,10 +5,10 @@ block content
         h1= title
         a.btn(href='/catalog/item/create') Create new item
 
-    ul
+    ul.list-container
         each item in items_list
-            li
+            li.container-item
                 a(href=item.url) #{item.name}
-                |  – $#{item.price}
+                h3 $#{item.price}
         else
             li There are no items.

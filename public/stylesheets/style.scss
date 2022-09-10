@@ -4,11 +4,39 @@ body {
 
 .main-container {
   display: flex;
-  gap: 100px;
+  flex-direction: column;
+
+  .sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .sidebar-nav {
+      display: flex;
+      gap: 15px;
+    }
+  }
 }
 
 // common classes
-h1 {
+.list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 20px;
+
+  .container-item {
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+h1, h3 {
   margin: 0;
 }
 

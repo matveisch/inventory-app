@@ -4,10 +4,35 @@ body {
 
 .main-container {
   display: flex;
-  gap: 100px;
+  flex-direction: column;
+}
+.main-container .sidebar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-container .sidebar .sidebar-nav {
+  display: flex;
+  gap: 15px;
 }
 
-h1 {
+.list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 20px;
+}
+.list-container .container-item {
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h3 {
   margin: 0;
 }
 
